@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Admin"> <!-- 매퍼 네임스페이스 명을 Member -->
+<insert id="admin_in">
+insert into admin values(1,#{admin_id},#{admin_pwd},#{admin_name},sysdate)
+
+</insert>
+
+<select id="admin_login" resultType="admin">
+select * from admin where admin_id=#{admin_id}
+</select>
+
+
+<!--  검색 전후 레코드 개수 -->
+<select id="admin_foodsum" resultType="int">
+select count(f_num) from food
+<where>
+ <if test="find_field== ''">
+   <!--  검색 조건이 없을때  총 레코드 개수-->
+ </if>
+ <if test="find_field== 'all'">
+ bsnsnm like #{find_name} or menu like #{find_name} or addr like #{find_name} 
+ </if>
+ <if test="find_field=='bsnsnm'"> 
+ bsnsnm like #{find_name}
+ </if>
+ <if test="find_field=='menu'">
+ menu like #{find_name}
+ </if>
+ <if test="find_field=='addr'">
+ addr like #{find_name} 
+ </if> 
+ 
+</where>
+</select>
+
+<!--  검색전후 목록 -->
+<select id="admin_foodList" resultType="food">
+select * from
+(select rowNum rNum,f_num,bsnscond,bsnsnm,menu,addr,lat,lng,tel,viewcnt,rest,suyong,food_file1,food_file2,food_file3,category,grade
+from (select * from food
+<where>
+ <if test="find_field ==''">
+ 
+ </if>
+ 
+ <if test="find_field== 'all'">
+ bsnsnm like #{find_name} or menu like #{find_name} or addr like #{find_name} 
+ </if>
+ 
+ <if test="find_field=='bsnsnm'">
+  bsnsnm like #{find_name}
+ </if>
+ <if test="find_field=='menu'">
+ menu like #{find_name}
+ </if>
+ <if test="find_field=='addr'">
+ addr like #{find_name} 
+ </if> 
+</where>
+order by grade asc))
+where rNum  &gt;=#{startrow} and rNum &lt;= #{endrow}
+
+</select>
+
+
+<select id="admin_foodcont" resultType="food">
+select * from food where f_num=#{f_num}
+
+</select>
+
+
+<!--  내용 수정 -->
+
+<update id="adfood_edit">
+update food set bsnscond=#{bsnscond},bsnsnm=#{bsnsnm},menu=#{menu},addr=#{addr},category=#{category},lat=#{lat},lng=#{lng},rest=#{rest},suyong=#{suyong},tel=#{tel},food_file1=#{food_file1},food_file2=#{food_file2},food_file3=#{food_file3} where f_num=#{f_num}
+
+</update>
+
+
+<!--  세부 정보 보기 -->
+<select id="admin_food_detail" resultType="food">
+select * from food where f_num=#{f_num} order by grade desc
+</select>
+
+<!--  조회수 증가 -->
+<update id="adfood_hit_up">
+update food set viewcnt=viewcnt+1 where f_num=#{f_num}
+</update>
+
+<!--  리뷰 등록 -->
+
+<insert id="review_insert">
+insert into review(rno,f_num,mem_id,r_point,r_cont,regdate) values(rno.nextval,#{f_num},#{mem_id},#{r_point},#{r_cont},sysdate)
+</insert>
+
+<!--  리뷰 점수 불러오기 -->
+<select id="review_point" resultType="double">
+select nvl(round(avg(r_point),1),0) from review where f_num=#{f_num}
+</select>
+
+<!--  리뷰 점수 갱신 -->
+<update id="food_grade">
+update food set grade=#{grade} where f_num=#{f_num}
+</update>
+
+<!--  조회수 감소 -->
+<update id="food_hit_down">
+update food set viewcnt=viewcnt-1 where f_num=#{f_num} 
+</update>
+
+<!-- 상세보기 회원일때 조회 -->
+<select id="food_like_m_state" resultType="food">
+select food.f_num as f_num,bsnscond ,bsnsnm,menu ,addr,lat,lng,tel,viewcnt,rest,suyong,grade,food_file1,food_file2,food_file3,nvl(like_table.like_state,0) like_state from food  left join like_table on
+food.f_num=like_table.f_num and mem_id=#{mem_id} where food.f_num=#{f_num} 
+
+</select>
+
+
+<!-- 상세보기 비회원일때 조회 -->
+<select id="food_like_none" resultType="food">
+select * from food where f_num=#{f_num}
+
+</select>
+
+
+
+<select id="review_read" resultType="review">
+select * from ( select rowNum rNum,rno,f_num,mem_id,r_point,r_cont,regdate from (select * from review order by rno asc)) 
+where f_num=#{f_num} and rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
+</select>
+
+<select id="review_csum" resultType="int">
+select count(rno) from review where f_num=#{f_num}
+</select>
+
+<select id="review_memid" resultType="String">
+select mem_id from review where rno=#{rno}
+</select>
+
+<update id="review_editok">
+update review set r_cont=#{r_cont} where rno=#{rno} and mem_id=#{mem_id}
+</update>
+
+<!--  리뷰 삭제  -->
+<delete id="review_delok">
+delete from review where rno=#{rno} and mem_id=#{mem_id}
+</delete>
+
+<!--  관리자 리뷰 삭제 -->
+<delete id="review_addel_ok">
+delete from review where rno=#{rno}
+</delete>
+
+
+
+</mapper>

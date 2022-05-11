@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Like">
+
+  
+  <insert id="like_create" >
+INSERT INTO like_table(like_no, f_num, mem_id, like_state) 
+VALUES ((SELECT NVL(MAX(like_no), 0) + 1 as like_no FROM like_table), #{boardno}, #{mno}, 0)
+  </insert>
+  
+  <delete id="like_cancel" >
+  	DELETE FROM like_table
+    WHERE mem_id=#{mno} AND f_num=#{boardno}
+  </delete>
+  
+  <select id="like_read" resultType="like">
+  SELECT like_no, f_num, mem_id, like_state
+    FROM like_table
+    WHERE f_num=#{boardno} AND mem_id=#{mno}
+  </select>
+  
+  <update id="like_check">
+  UPDATE like_table
+    SET like_state = like_state + 1 
+    WHERE mem_id=#{mno} AND f_num=#{boardno}
+  </update>
+  
+  <select id="first_check" resultType="int" >
+  SELECT COUNT(like_no) as cnt
+   FROM like_table
+   WHERE f_num=#{boardno} AND mem_id=#{mno}
+  </select>
+
+
+</mapper> 

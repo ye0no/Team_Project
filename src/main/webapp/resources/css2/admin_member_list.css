@@ -1,0 +1,55 @@
+@charset "UTF-8";
+
+h2{
+text-align:center;
+}
+.admem_batch1{
+text-align:center;
+letter-spacing:5px;
+}
+
+table{
+margin-left:auto;
+margin-right:auto;
+margin-bottom:30px;
+text-align:center;
+width:1500px;
+}
+
+table,td,th{
+border-collapse:collapse;
+border:1px solid gray;
+}
+
+
+#admem_cnt{
+background-color:#E8C47E;
+height:50px;
+text-align:right;
+}
+
+#admem_batch3{
+height:40px;
+}
+
+.admem_batch_field{
+margin-top:30px;
+}
+
+.admem_batch_field input[type=select]{
+height:50px;
+}
+.admem_batch_field input[type=text]{
+height:50px;
+}
+
+.admem_batch_field input[type=submit]{
+height:28px;
+border-radius:10px;
+border:0px;
+color:white;
+background-color:darkorange;
+}
+
+.admem_total_list{
+margin-left:1300px;}

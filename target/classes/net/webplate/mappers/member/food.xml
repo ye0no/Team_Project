@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Food"> <!-- 매퍼 네임스페이스 명을  Food -->
+
+<!--  검색 전후 레코드 개수 -->
+<select id="food_cnt" resultType="int">
+select count(f_num) from food
+where bsnsnm like #{find_name} or menu like #{find_name} or addr like #{find_name}
+
+
+</select>
+
+<!--  전체 목록   중에 50개 보여주기 -->
+<select id="food_list" resultType="food">
+
+select f_num,bsnsnm,addr,food_file1,grade from food 
+where <![CDATA[rownum<=50]]> order by grade desc
+
+</select>
+
+<!-- < 부등호를 TAG로 인식하기 때문에 <![CDATA[내용]]>을 사용하였다.  -->
+
+
+<!--  총 갯수 -->
+<select id="food_count" resultType="int">
+select count(f_num) from food 
+</select>
+
+
+<select id="search_cnt" resultType="int">
+select count(f_num) from food
+where addr like #{find_name} or bsnsnm like #{find_name} or menu like #{find_name}
+</select>
+  
+<select id="search_List" resultType="food">
+select * from (select rowNum rNum,f_num,bsnsnm,menu,addr,tel,food_file1,category,grade from
+(select * from food
+<where>
+ addr like #{find_name} or bsnsnm like #{find_name} or menu like #{find_name}
+</where>
+order by grade desc))
+where rNum &gt;= #{startrow} and rNum &lt;=#{endrow} 
+</select>
+
+<!--  지역 리스트 -->
+<select id="food_Area" resultType="food">
+select * from food where addr like #{divide} order by grade desc
+
+</select>
+
+<!--  지역 개수 -->
+<select id="food_Area_cnt" resultType="int">
+select count(f_num) from food where addr like #{divide}
+</select>
+
+<!--  지역별 조회수 -->
+<select id="food_Area_hit" resultType="int">
+select sum(viewcnt) from food where addr like #{divide} and <![CDATA[rownum<=30]]> 
+</select>
+
+<!--  메인 맛집 분류  -->
+<select id="top_pig8" resultType="food">
+select * from (select * from food where category like #{pig}) where  <![CDATA[rownum<=8]]> order by grade desc
+</select>
+
+<select id="Grade_Top8" resultType="food">
+select * from food where <![CDATA[rownum<=8]]> order by grade desc 
+</select>
+
+
+<!--  음식 종류 분류 -->
+<select id="cond_divide" resultType="food">
+select * from (select * from food where bsnscond like #{eat}) where <![CDATA[rownum<=30]]> order by grade desc  
+</select>
+
+<!--  믿고 보는 맛집 리스트 조회수 -->
+<select id="cond_hit" resultType="int">
+select sum(viewcnt) from food where bsnscond like #{eat} and <![CDATA[rownum<=30]]> 
+</select>
+
+<!--  믿고 보는 맛집 리스트 개수 -->
+<select id="cond_count" resultType="int">
+select count(f_num) from food where bsnscond like #{eat}
+</select>
+
+<!--  좋아요 상태 확인 -->
+<select id="food_like_state" resultType="food">
+select food.f_num as f_num ,bsnsnm ,addr,grade,food_file1,nvl(like_table.like_state,0) like_state from food  left join like_table on
+food.f_num=like_table.f_num and mem_id=#{Sid} where <![CDATA[rownum<=50]]> order by grade desc
+</select>
+
+
+<!--  믿고보는 맛집리스트 좋아요 구분 -->
+<select id="food_cont_like" resultType="food">
+select food.f_num as f_num ,bsnsnm ,addr,grade,food_file1,nvl(like_table.like_state,0) like_state from food  left join like_table on
+food.f_num=like_table.f_num and mem_id=#{mem_id} where <![CDATA[rownum<=30]]> and bsnscond like #{bsnscond} order by grade desc
+</select>
+
+
+<!--  지역별 맛집리스트 좋아요 구분 -->
+<select id="food_addr_like" resultType="food">
+select food.f_num as f_num ,bsnsnm ,addr,grade,food_file1,nvl(like_table.like_state,0) like_state from food  left join like_table on
+food.f_num=like_table.f_num and mem_id=#{mem_id} where <![CDATA[rownum<=30]]> and addr like #{addr} order by grade desc
+</select>
+
+<!--  메뉴별 맛집리스트 조회수 -->
+<select id="food_menu_hit" resultType="int">
+select sum(viewcnt) from food where category like #{eat2} and <![CDATA[rownum<=30]]>
+</select>
+
+
+<!--   로그인 상태시 메뉴별 조회  -->
+<select id="food_menu_List" resultType="food">
+select food.f_num as f_num ,bsnsnm ,addr,grade,food_file1,nvl(like_table.like_state,0) like_state from food  left join like_table on
+food.f_num=like_table.f_num and mem_id=#{mem_id} where <![CDATA[rownum<=30]]> and category like #{category} order by grade desc
+</select>
+
+<!--  비회원 메뉴별 조회  -->
+<select id="food_getMenuList2" resultType="food">
+select * from food where category like #{category}
+</select>
+
+
+</mapper>

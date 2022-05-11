@@ -1,0 +1,130 @@
+@charset "UTF-8";
+.rest_img{
+	border: 0px solid red;
+	width: 100%;
+	min-width: 900px;
+	height: 350px;
+}
+.r_i{
+	width: 100%;
+	position: relative;
+}
+.r_img{
+	width: 350px;
+	height: 310px;
+	color: #d4d4d4;
+}
+.re_imgbox{
+	width: 1500px;
+	height: 320px;
+	margin: auto;
+	position: absolute;
+	top: 110px;
+	right: 210px;
+	
+}
+.re_img{
+	 width: 350px;
+	 height: 310px;
+	 border: 0px solid red;
+	 float: right;
+	 margin-right: 20px;
+}
+.re_img a{
+	
+}
+
+/*------------*/
+
+.rest_main{
+	border-bottom: 1px solid #bcbcbc;
+	width: 1300px;
+	min-width: 900px;
+	height: 690px;
+	margin: auto;
+}
+
+.main_rname{
+	border-bottom: 1px solid #bcbcbc;
+	width: 1300px;
+	height: 198px;
+	padding: 60px 100px 0px 65px;
+}
+.restName{
+	font-size: 42px;
+	width: 500px;
+	height: 150px;
+}
+.rew_btn{
+	float: right;
+	margin-left: 20px;
+}
+.btn{
+	background-color: white; 
+	border: 0px; 
+	outline: 0px;
+	
+}
+.btn :hover{
+	cursor: pointer;
+}
+
+.left_rmain{
+	float: left;
+	border: 0px solid black;
+	width: 498px;
+}
+
+.info_menu{ /* 테이블 css */
+	border-collapse: separate;
+	border-spacing: 0px 15px;
+	width: 500px;
+	text-align: left;
+	padding-left: 50px;
+	font-size:16px;
+	color:black;
+}
+
+
+.rest_addrNum{ /* 주소 지번 css */
+	font-size: 11px;
+	border: 1px solid;
+	padding: 2px;
+}
+.menuIt{
+	margin: 5px 0px;
+}
+.menu{
+	padding: 0px 50px 0px 0px;
+	line-height:30px;
+}
+
+.food_menu{
+	vertical-align:top;
+	padding-top:10px;
+}
+
+.menu_info_cn {
+	width:80px;
+	padding-right:5px;
+}
+
+
+/*------------*/
+.right_rmain{
+	float: right;
+	border: 1px solid black;
+	width: 600px;
+	height: 450px;
+	margin: 20px 50px 0px 0px;
+}
+
+
+/*------------------------*/
+.rest_down{
+	border: 1px solid blue;
+	width: 1300px;
+	min-width: 900px;
+	height: 1200px;
+	margin: auto;
+}

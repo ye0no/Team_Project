@@ -1,0 +1,90 @@
+@charset "UTF-8";
+
+
+.idck_wrap{
+width:500px;
+}
+
+#idck_find_title{
+color: black;
+}
+.user_info{
+margin-left:30px;
+color: black;
+}
+
+.user_info input[type=text]{
+margin-bottom:-30px;
+padding:8px;
+width:242px;
+}
+
+.idck_wrap input[type=submit]{
+margin-left:30px;
+
+width:100px;
+font-size:15px;
+
+font-weight:bold;
+border-radius:10px;
+border:1px solid white;
+padding:12px;
+text-align:center;
+background:darkorange;
+color:white;
+font-style:italic;
+}
+
+.idck_wrap input[type=reset]{
+
+margin-left:10px;
+width:70px;
+font-size:15px;
+font-weight:bold;
+border-radius:10px;
+border:1px solid white;
+padding:12px;
+text-align:center;
+background:darkorange;
+color:white;
+font-style:italic;
+}
+.idck_wrap input[type=reset]:hover{
+cursor:pointer;
+}
+
+.idck_wrap input[type=submit]:hover{
+cursor:pointer;
+
+}
+
+.tel{
+margin-left:30px;
+}
+#idck_menu{
+margin-top:20px;
+}
+
+
+#id_find_title{
+margin-left:35px;
+}
+
+.tel input[type=number]{
+width:66px; 
+height:30px;
+margin-top:4px;
+}
+
+#tel_idck{
+font-size:14px;
+font-weight:bold;
+}
+
+
+/* 숫자로 입력받았을 시  위 아래 버튼 삭제 방법 */
+input::-webkit-inner-spin-button{
+	appearance:none;
+	-moz-apparance:none;
+	-webkit-appearnce:none;
+}

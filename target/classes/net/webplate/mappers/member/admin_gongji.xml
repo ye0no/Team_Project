@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AdminGongji"> 
+
+<select id="gongji_count" resultType="int">
+select count(gongji_no) from gongji
+<where>
+<if test="find_field == '' "></if>
+
+<if test="find_field == 'all'">
+title like #{find_name} or gongji_cont like #{find_name}
+</if>
+<if test="find_field == 'title'">
+title like #{find_name}
+</if>
+<if test="find_field == 'gongji_cont'">
+gongji_cont like #{find_name}
+</if>
+</where>
+</select>
+
+<select id="gongji_list" resultType="gongji">
+select * from (select rowNum rNum,gongji_no,title,writer,gongji_cont,gongji_register,hit from ( select * from gongji 
+<where>
+<if test="find_field == ''"></if>
+<if test="find_field == 'all'">
+title like #{find_name} or gongji_cont like #{find_name}
+</if>
+<if test="find_field == 'title'">
+title like #{find_name}
+</if>
+<if test="find_field == 'gongji_cont'">
+gongji_cont like #{find_name}
+</if>
+</where>
+order by gongji_no desc))
+where rNum &gt;= #{startrow} and rNum &lt;=#{endrow}
+</select>
+
+
+<select id="find_admin_name" resultType="String">
+select admin_name from admin where admin_id=#{admin_id}
+</select>
+
+<!--  글 등록 -->
+<insert id="gongji_insert">
+insert into gongji(gongji_no,title,writer,gongji_cont) values(gongji_no.nextval,#{title},#{writer},#{gongji_cont})
+</insert>
+
+<select id="gongji_info" resultType="gongji">
+select * from gongji where gongji_no=#{gongji_no}
+</select>
+
+<update id="gongji_hit">
+update gongji set hit=hit+1 where gongji_no=#{gongji_no}
+</update>
+
+<delete id="gongji_del">
+delete from gongji where gongji_no=#{gongji_no}
+</delete>
+
+<update id="gongji_edit">
+update gongji set title=#{title}, gongji_cont=#{gongji_cont} where gongji_no=#{gongji_no}
+
+</update>
+
+</mapper>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AdminMember"> 
+
+<!--  검색전후 개수 -->
+<select id="admem_cnt" resultType="int">
+select count(id) from member
+<where>
+<if test="find_field == ''"> </if>
+<if test="find_field == 'id'">
+id like #{find_name}
+</if>
+<if test="find_field == 'name'">
+name like #{find_name}
+</if>
+</where>
+</select>
+
+<!--  검색전후 회원목록 -->
+<select id="admem_list" resultType="member">
+
+select * from (select rowNum rNum,id,name,gender,tel,
+mem_state,mem_date from
+(select * from member
+<where>
+<if test="find_field == ''"> </if>
+<if test="find_field == 'id'">
+id like #{find_name}
+</if>
+<if test="find_field == 'name'">
+name like #{find_name}
+</if>
+</where>
+order by id asc))
+where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
+
+</select>
+
+
+<!--  계정 삭제 -->
+
+<delete id="admem_del">
+delete from member where id=#{id}
+</delete>
+
+
+<!--  계정 수정을  위한 계정 조회-->
+<select id="admem_Edit" resultType="member">
+select * from member where id=#{id}
+</select>
+
+<!--  수정 ok -->
+<update id="admem_Edit_ok">
+update member set pw=#{pw},name=#{name},jumin1=#{jumin1},jumin2=#{jumin2},jumin3=#{jumin3},gender=#{gender},email=#{email},
+tel=#{tel},mem_state=#{mem_state},mem_delcont=#{mem_delcont} where id=#{id}
+
+</update>
+
+
+</mapper>

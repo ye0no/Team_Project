@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Member"> <!-- 매퍼 네임스페이스 명을 Member -->
+
+
+<!--  아이디 중복체크 -->
+<select id="m_check" resultType="member">
+select * from member where id = #{id}
+
+</select>
+
+
+<!--  로그인  -->
+<select id="login_check" resultType="member">
+
+select * from member where id=#{login_id} and mem_state=1
+</select>
+
+
+<!-- 마이페이지 정보 내역 보기 -->
+<select id="member_list" resultType="member">
+select * from member where id=#{Sid}
+</select>
+
+<insert id="mem_in">
+insert into member(id,pw,name,jumin1,jumin2,jumin3,gender,email,tel,mem_state,mem_date) values(#{id},#{pw},#{name},#{jumin1},#{jumin2},#{jumin3},
+#{gender},#{email},#{tel},1,sysdate)
+
+</insert>
+
+
+<!--  정보 수정 -->
+<update id="mem_edit">
+update member set pw=#{pw},name=#{name},jumin1=#{jumin1},jumin2=#{jumin2},jumin3=#{jumin3},gender=#{gender},email=#{email},tel=#{tel} where id=#{id}
+
+</update>
+
+
+
+<update id="mem_del">
+update member set mem_delcont=#{mem_delcont},mem_deldate=sysdate,mem_state=0 where id=#{id}
+
+</update>
+
+<select id="mem_pwd" resultType="member">
+select * from member where id=#{id} and name=#{name}
+</select>
+
+<!--  임시비번 변경 -->
+<update id="pwd_edit">
+update member set pw=#{pw} where id=#{id}
+</update>
+
+<select id="id_find" resultType="member">
+select * from member where name=#{name} and tel=#{tel}
+</select>
+
+
+
+
+
+<!--  좋아요 확인 -->
+<select id="like_view" resultType="food">
+select like_table.f_num,bsnscond,bsnsnm,menu,addr,tel,food_file1
+from like_table left join food on food.f_num=like_table.f_num where like_table.like_state=1
+and like_table.mem_id=#{Sid}
+
+</select>
+
+<!--  사용자가 삭제 버튼 눌렀을 때 경우 -->
+<delete id="like_User_del">
+delete from like_table where mem_id=#{mem_id} and f_num=#{f_num}
+</delete>
+
+</mapper>

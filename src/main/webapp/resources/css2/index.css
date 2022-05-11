@@ -1,0 +1,298 @@
+@charset "UTF-8";
+*{ /* -- 전제 설정 -- */
+	font-family: 'Noto Sans KR', sans-serif;
+	list-style: none;
+	text-decoration: none;
+	border-collapse: collapse;
+	margin: 0px;
+	padding: 0px;
+	color: #000;
+	z-index: initial; /* 객체 배치 순서 기본 설정 */
+}
+h1{ /* 메인 텍스트 */
+	font-size: 35px; /* 글자 크기 */
+}
+
+h2{ /* h2 텍스트 */
+	font-size: 1.5em; /* 글자 크기 */
+	color: orange; /* 글자색 오렌지 */
+}
+
+h3 a{ /* 리스트 더보기 */
+	font-size: 18px; /* 글자 크기 */
+	color: #c1c1c1; /* 글자색 회색 계열  */
+}
+
+h3 a:hover{ /* 리스트 더보기 마우스 오버 효과 */
+	text-decoration: underline; /* 마우스 오버시 밑줄선 생성 */
+	color: black;
+}
+.clear{
+	clear:both; /* float속성을 제거해서 ui가 깨지는 것을 방지 */
+}
+
+/* ------------- 헤더 -------------- */
+.header{ /* 헤더 영역 */
+    width: 100%;
+    min-width: 900px;
+    height: 600px;
+	background-color: white;
+}
+
+.top_bg{    /* 로고+메뉴 영역 */
+	display: flex;
+	width: 100%;
+	min-width: 900px;
+	margin: auto;
+	height: 86px;
+	background: white; /* header 틀 백그라운드 색상 흰색 */
+	box-shadow: 0px 0px 15px 0px gray;
+	position: fixed; /* 스크롤해도 같이 내려가게 고정(고정시 붕뜬 상태가 되어 그 아래 영역을 잡아먹기때문에 메뉴 영역 height만큼 padding을 줘야함) */
+	z-index: 1; /* 객체 배치 순서 기본보다 먼저 나오게 설정 */
+}
+
+.logo_Area{ /* 로고 */
+	width: 300px;
+	height: 40px;
+	margin-top: 20px;
+	margin-left: 30px;
+}
+
+.nav{ /* 메뉴바 */
+	display: flex;
+	justify-content: flex-end; /* 메인축 방향 정렬 */
+	line-height:86px;
+	width: calc(100% - 300px);
+	margin-right: 30px;
+}
+.nav li{ /* 메뉴간 간격 */
+	margin-left: 80px; 
+}
+.nav li a{
+	color: black;
+	font-weight: bold;
+}
+.nav li a:hover{ /* 메뉴바 마우스 오버시 효과 */
+	text-decoration: underline; /* 마우스 오버시 밑줄선 */
+	color: orange; /* 마우스 오버시 글자색 오렌지로 변경 */
+}
+
+.top_img{
+	background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(https://mp-seoul-image-production-s3.mangoplate.com/a4283e5725fb56755b9bbeb8f285d0dc.jpg);
+	background-size: cover;
+	width: 1600px;
+    min-width: 900px;
+    height: 510px;
+	margin: auto;
+	padding-top: 86px; /* 메뉴바가 고정되어 그 부분이 붕뜬상태라 그 영역을 벗어나기 위해 padding을 준다 */
+	border: 1px solid black;
+}
+
+.top_text{ /* 메인 이미지위 텍스트 */
+	width: 100%;
+	min-width: 900px;
+	margin: 150px 0px 30px 0px;
+	background: none;
+	text-align: center;
+}
+.top_text h1{ /* 메인 이미지 텍스트 글자 */
+	color: white; /* 글자색 변경 */
+}
+
+.box{  /* 검색박스  */
+	border: 0px solid red;
+	width: 100%;
+	min-width: 900px;
+	color: #fff;
+	text-align: center;
+}
+.box input{
+	border: none;
+}
+.box input[type=text]{ 
+	background-color: white;
+	width: 550px;
+	padding: 17px;
+	border-top-left-radius: 25px;
+	border-bottom-left-radius: 25px;
+}
+.box input[type=submit]{
+	background-color: orange;
+	width: 100px;
+	padding: 17px;
+	border-radius: 25px;
+	margin-left: -25px;
+	color: white;
+}
+.box input[type=text]::placeholder{  /*  */
+	color: gray;
+	font-size: 17px;
+}
+.box input[type=submit]:hover{
+	cursor: pointer;
+}
+
+
+/* ----------- 메인 구역 (section) ----------- */
+.main{
+	width: 100%;
+	min-width: 900px;
+	height: 680px;
+	border-bottom: 1px solid black;
+}
+
+.section{ 
+	width: auto;
+	min-width: 900px;
+	height: 50px;
+	margin-left: 90px;
+	margin-right: 90px;
+}
+.section h2{
+	float: left;
+	line-height:50px;
+	margin-top: 20px;
+}
+.section h3 a{  /* 리스트 하이퍼링크 설정  */
+	float: right;
+	line-height:50px;
+	margin-top: 20px;
+}
+
+
+     /* 3 x 2 구역  */
+.list_img{  /* 리스트별 이미지 */
+	width: 1600px;
+	height: 550px;
+	border: 0px solid red;
+	margin: auto;
+	display: flex;
+	flex-wrap: wrap;
+}
+.list_ul{
+	width: 500px;
+	margin: auto;
+}
+.list_ul li{
+	border: 1px solid white;
+	height: 220px;
+	margin: 35px 0px;
+}
+.list_ul a{
+	width: 500px;
+	height: 220px;
+	position: absolute;
+	transform: translate(0%,-100%);
+}
+.list_img_jpg{
+	position: relative;
+	height: 220px;
+	width: 500px;
+	filter: brightness(70%);
+}
+.list_img_text{
+	text-align: center;
+	margin-top: 60px;
+}
+.title{
+	width:500px;
+	font-weight: bold;
+	font-size: 30px;
+	color: white;
+}
+.desc{
+	width: 500px;
+	font-size: 18px;
+	color: white;
+}
+
+
+     /* 4 x 2 구역 */
+.list_img2{  
+	width: 1600px;
+	height: 550px;
+	border: 0px solid red;
+	margin: auto;
+	display: flex;
+	flex-wrap: wrap;
+}
+.contain2{ 
+	width: 350px;
+	height: 220px;
+	margin: auto;
+}
+.contain2 a img{
+	width: 350px;
+	height: 180px;
+	border: 0px solid red;
+	color: white;
+	font-size: 30px;
+	font-weight: bold;
+	line-height: 170px;
+}
+.contain2 span{
+	display: inline-block;
+	width: 350px;
+}
+.t_b{
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.t_p{
+	font-size: 20px;
+	color:orange;
+	font-weight: bold;
+	margin-left:3px;
+}
+
+
+/* ---------------- 하단 영역 ----------------- */
+.footer{  /* 하단 정체 크기 */
+	width: 100%;
+	min-width: 1600px;
+	height: 400px;
+	background: #9c9c9c; 
+}
+.foot_box{
+	border: 0px solid red;
+	width: 1200px;
+	height: 300px;
+	margin-left:300px;
+}
+.foot_logo img{
+	width: 200px;
+	height: 100px;
+	margin-top: 60px;
+	float: left;
+}
+#foot_ul1{ /* 약관 */
+	width: 200px;
+}
+#foot_ul2{ /* 소개 */
+	width: 150px;
+}
+.foot_ul{
+	float: right;
+	margin: 55px 150px 0px 0px;
+}
+.foot_ul li{
+	margin-top: 20px;
+	font-size: 17px;
+}
+.foot_ul a{
+	color: white;
+}
+.foot_ul a:hover{
+	font-weight: bold;
+}
+
+#foot_down{
+	text-align: center;
+	font-size: 15px;
+	color: #ffffff;
+	font-weight: bold;
+}
+
+
+

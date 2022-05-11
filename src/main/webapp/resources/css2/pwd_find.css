@@ -1,0 +1,63 @@
+@charset "UTF-8";
+
+body{
+background-image:url('../resources/images/pwd_test3.jpg');
+background-repeat:no-repeat;
+background-size:cover;
+max-height:100%;
+}
+.pwd_wrap{
+width:300px;
+}
+
+#pwd_find_title{
+color: black;
+}
+.user_info{
+margin-left:30px;
+color: black;
+}
+
+.user_info input[type=text]{
+margin-bottom:-30px;
+padding:8px;
+}
+
+.pwd_wrap input[type=submit]{
+margin-left:30px;
+
+width:90px;
+font-size:15px;
+
+font-weight:bold;
+border-radius:10px;
+border:1px solid white;
+padding:12px;
+text-align:center;
+background:darkorange;
+color:white;
+font-style:italic;
+}
+
+.pwd_wrap input[type=reset]{
+
+margin-left:10px;
+width:70px;
+font-size:15px;
+font-weight:bold;
+border-radius:10px;
+border:1px solid white;
+padding:12px;
+text-align:center;
+background:darkorange;
+color:white;
+font-style:italic;
+}
+.pwd_wrap input[type=reset]:hover{
+cursor:pointer;
+}
+
+.pwd_wrap input[type=submit]:hover{
+cursor:pointer;
+
+}

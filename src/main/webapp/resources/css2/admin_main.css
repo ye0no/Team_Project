@@ -1,0 +1,112 @@
+@charset "UTF-8";
+
+*{
+font-family: 'Noto Sans KR', sans-serif;
+z-index: initial;
+}
+body{
+margin:0;
+}
+
+a{
+text-decoration:none;
+color:black;
+font-size:18px;
+
+}
+
+.block{
+height:130px;
+}
+
+.navbar{
+display:flex;
+width:100%;
+justify-content:space-between;
+align-items:center;
+background-color:#FFFFFF;
+border-bottom:1px solid gray;
+padding: 8px 12px;
+position: fixed;
+z-index:1;
+}
+
+.navbar_menu{
+display:flex;
+list-style:none;
+padding-left:0;
+margin-right:20px;
+padding:5px;
+
+}
+
+.navbar_menu li{
+padding:12px 15px;
+}
+
+.navbar_menu li:hover{
+text-decoration:underline;
+color:orange;
+border-radius:4px;
+}
+
+
+.navbar_menu a:hover{
+color:darkorange;
+font-size:18px;
+font-weight:bold;
+}
+
+/* 버튼 숨기기*/
+.navbar_toggleBtn{
+	display:none;
+}
+
+
+
+
+/* 보여주는 화면 최대가 768px 일때 */
+@media screen and (max-width: 768px){
+.navbar{
+flex-direction:column;
+align-items:flex-start;
+}
+
+
+.navbar_menu{
+display:none;	
+flex-direction:column;
+align-items:center;
+width:100%;
+}
+.navbar_menu li{
+width:100%;
+}
+
+.navbar_admin_logOut{
+	display:none;	
+}
+
+.navbar_admin_logOut h3{
+visibility:hidden;}
+
+.navbar_admin_logOut input [type=button]{	
+padding:5px;
+width:100%;
+}
+
+.navbar_toggleBtn{
+	display:block;
+	position:absolute;
+	right:66px;
+	top:20px;
+	font-size:24px;
+	color:orange;
+}
+
+
+.navbar_menu.active, .navbar_admin_logOut.active{
+	display:flex;
+}
+
+

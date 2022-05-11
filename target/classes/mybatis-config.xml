@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration 
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+  <typeAliases> <!-- 데이터 저장빈 클래스 객체 별칭명을 관리 -->
+  <typeAlias type="net.webplate.vo.MemberVO" alias="member"/>
+  
+  <typeAlias type="net.webplate.vo.AdminVO" alias="admin"/>
+  
+  <typeAlias type="net.webplate.vo.FoodVO" alias="food"/>
+  
+  <typeAlias type="net.webplate.vo.LikeVO" alias="like"/>
+  
+  <typeAlias type="net.webplate.vo.AdminGongjiVO" alias="gongji"/>
+  
+    <typeAlias type="net.webplate.vo.ReviewVO" alias="review"/>
+
+
+     
+  </typeAliases>  
+  
+  
+</configuration>

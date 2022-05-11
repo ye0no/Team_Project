@@ -1,0 +1,68 @@
+@charset "UTF-8";
+
+#food_img{
+width:200px;
+height:150px;
+}
+#food_img2{
+width:200px;
+height:150px;
+}
+#food_img3{
+width:200px;
+height:150px;
+}
+
+  .batch{
+  display:flex;
+  justify-content:center;
+  width:100%;
+  text-align:left;
+  
+  }
+  
+  #map{
+    display:flex;
+  justify-content:center;
+  margin-left:175px;
+  width:50%;
+  height:300px; 
+  z-index:0;
+  }
+  
+  .batch input[type=submit]{
+  margin-right:15px;
+  width:120px;
+  height:43px;
+  background-color:darkorange;
+  color:white;  
+  border:0px;  
+  border-radius:5px;
+  }
+  .batch input[type=reset]{
+  margin-right:15px;
+  width:70px;
+  height:43px;
+  background-color:darkorange;
+  color:white;  
+  border-radius:5px;
+  border:0px;
+  }
+  .batch input[type=button]{
+  width:70px;
+  height:43px;
+  background-color:darkorange;
+  color:white;  
+   border:0px;
+  border-radius:5px;
+  }
+  .batch input[type=button]:hover{
+  cursor:pointer;
+  }
+  .batch input[type=reset]:hover{
+  cursor:pointer;
+  }
+  .batch input[type=submit]:hover{
+  cursor:pointer;
+  }
+  
